@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,7 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
+
         *{
             margin:0;
             padding:0;
@@ -99,17 +101,52 @@
             font-size:12px;
             opacity:0.85;
         }
+
+        /* Error Message Style */
+        .error-box{
+            background:#ff4d4d;
+            color:white;
+            padding:10px;
+            border-radius:6px;
+            margin-bottom:15px;
+            font-size:14px;
+            animation:shake 0.3s;
+        }
+
+        @keyframes shake{
+            0%{transform:translateX(0);}
+            25%{transform:translateX(-5px);}
+            50%{transform:translateX(5px);}
+            75%{transform:translateX(-5px);}
+            100%{transform:translateX(0);}
+        }
+
     </style>
 </head>
 <body>
 
 <div class="login-box">
 
-    <!-- ⭐ LOGO -->
+    <!-- Logo -->
     <img src="images/logo.png" alt="Ocean View Logo" class="logo">
 
     <h2>Ocean View Resort</h2>
 
+    <!-- Error Message Display -->
+    <%
+        String error = (String) request.getAttribute("errorMessage");
+        if(error != null){
+    %>
+
+    <div class="error-box">
+        <%= error %>
+    </div>
+
+    <%
+        }
+    %>
+
+    <!-- Login Form -->
     <form action="login" method="post">
 
         <div class="input-group">
@@ -129,6 +166,7 @@
     <div class="footer-text">
         Secure Admin Access
     </div>
+
 </div>
 
 </body>
